@@ -6,8 +6,8 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
-var botClient = new TelegramBotClient("6409714400:AAF5yFXH7Ude5rgNN-31WW9xQnLXnCTiELM");
-const string GRINCH_URL = "https://dekanat.kubg.edu.ua/cgi-bin/timetable.cgi?n=700&group=";
+var botClient = new TelegramBotClient(Environment.GetEnvironmentVariable("TELEGRAM_BOT_TOKEN") ?? "");
+var grinch_url = Environment.GetEnvironmentVariable("GRINCH_URL1");
 using var cts = new CancellationTokenSource();
 InlineKeyboardMarkup keyboard = new(new[]
 {
@@ -70,7 +70,7 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
     await botClient.SendTextMessageAsync(callbackQuery.Message.Chat.Id, $"Секунду, шукаю..."); ;
     if (callbackQuery.Data.StartsWith("ФТЕБ12140д"))
     {
-        using (var ms = new MemoryStream(ImageFromURL(GRINCH_URL + "1013")))
+        using (var ms = new MemoryStream(ImageFromURL(grinch_url + "1013")))
         {
             await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, new InputFileStream(ms, "image.png"),
                 callbackQuery.Message.MessageThreadId, null, "Ось що знайшов на найближчий тиждень для групи ФТЕБ-1-21-4.0д");
@@ -80,7 +80,7 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
     }
     if (callbackQuery.Data.StartsWith("БІКСБ22140д"))
     {
-        using (var ms = new MemoryStream(ImageFromURL(GRINCH_URL + "928")))
+        using (var ms = new MemoryStream(ImageFromURL(grinch_url + "928")))
         {
             await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, new InputFileStream(ms, "image.png"),
                 callbackQuery.Message.MessageThreadId, null, "Ось що знайшов на найближчий тиждень для групи БІКСБ-2-21-4.0д");
@@ -112,27 +112,3 @@ async Task SendInlineKeyboards(ITelegramBotClient botClient, Message message)
 {
     await botClient.SendTextMessageAsync(message.Chat.Id, "Вибери свою групу:", replyMarkup: keyboard);
 }
-//HtmlNodeCollection? GetScheduleHTML(int group)
-//{
-//    // From Web
-//    var url = "https://dekanat.kubg.edu.ua/cgi-bin/timetable.cgi?n=700&group=928";
-//    var web = new HtmlWeb();
-//    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-//    web.OverrideEncoding = Encoding.GetEncoding("Windows-1251");
-//    var doc = web.Load(url);
-//    // With LINQ
-//    // Monday //*[@id="wrap"]/div/div/div/div[4]/div[1]/div[1]
-//    // Tuesday //*[@id="wrap"]/div/div/div/div[4]/div[1]/div[2]
-//    // Wednesday //*[@id="wrap"]/div/div/div/div[4]/div[2]/div[1]
-//    // Thursday //*[@id="wrap"]/div/div/div/div[4]/div[2]/div[2]
-//    // Friday //*[@id="wrap"]/div/div/div/div[4]/div[3]/div
-//    var schedulePart1 = doc.DocumentNode.SelectNodes("//*[@id=\"wrap\"]/div/div/div/div[4]/div[1]");
-//    // Works. But img src must be set to https://dekanat.kubg.edu.ua/check.jpg and decide using parser or html to img
-//    var schedulePart2 = doc.DocumentNode.SelectNodes("//*[@id=\"wrap\"]/div/div/div/div[4]/div[2]");//*[@id="wrap"]/div/div/div/div[4]/div //*[@id="wrap"]/div/div/div/div[4]
-//    var result = schedulePart1;
-//    if (schedulePart1 != null && schedulePart2 != null)
-//    {
-//        result.Concat(schedulePart2);
-//    }
-//    return result;
-//}
