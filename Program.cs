@@ -7,7 +7,7 @@ using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
 var botClient = new TelegramBotClient(Environment.GetEnvironmentVariable("TELEGRAM_BOT_TOKEN") ?? "");
-var grinch_url = Environment.GetEnvironmentVariable("GRINCH_URL1421");
+var grinch_url = Environment.GetEnvironmentVariable("GRINCH_URL14521");
 using var cts = new CancellationTokenSource();
 InlineKeyboardMarkup keyboard = new(new[]
 {
