@@ -30,7 +30,7 @@ botClient.StartReceiving(
 
 var me = await botClient.GetMeAsync();
 
-Console.WriteLine($"Почав слухати @{me.Username}");
+Console.WriteLine($"Почав слухати @{me.Username}1");
 Console.ReadLine();
 
 cts.Cancel();
