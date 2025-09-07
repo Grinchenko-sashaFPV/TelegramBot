@@ -13,8 +13,8 @@ InlineKeyboardMarkup keyboard = new(new[]
 {
     new[]
     {
-        InlineKeyboardButton.WithCallbackData("ФТЕБ12140д", "ФТЕБ12140д"),
-        InlineKeyboardButton.WithCallbackData("БІКСБ22140д", "БІКСБ22140д")
+        InlineKeyboardButton.WithCallbackData("ФТЕБ", "ФТЕБ"),
+        InlineKeyboardButton.WithCallbackData("БІКСм12514д", "БІКСм12514д")
     }
 });
 var receiverOptions = new ReceiverOptions
@@ -30,7 +30,7 @@ botClient.StartReceiving(
 
 var me = await botClient.GetMeAsync();
 
-Console.WriteLine($"Почав слухати @{me.Username}11");
+Console.WriteLine($"Почав слухати @{me.Username}");
 Console.ReadLine();
 
 cts.Cancel();
@@ -70,7 +70,7 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
     await botClient.SendTextMessageAsync(callbackQuery.Message.Chat.Id, $"Секунду, шукаю..."); ;
     if (callbackQuery.Data.StartsWith("ФТЕБ12140д"))
     {
-        using (var ms = new MemoryStream(ImageFromURL(grinch_url + "1013")))
+        using (var ms = new MemoryStream(ImageFromURL(grinch_url + "-1375")))
         {
             await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, new InputFileStream(ms, "image.png"),
                 callbackQuery.Message.MessageThreadId, null, "Ось що знайшов на найближчий тиждень для групи ФТЕБ-1-21-4.0д");
@@ -78,12 +78,12 @@ async Task HandleCallbackQuery(ITelegramBotClient botClient, CallbackQuery callb
         await SendInlineKeyboards(botClient, callbackQuery.Message);
         return;
     }
-    if (callbackQuery.Data.StartsWith("БІКСБ22140д"))
+    if (callbackQuery.Data.StartsWith("БІКСм12514д"))
     {
-        using (var ms = new MemoryStream(ImageFromURL(grinch_url + "928")))
+        using (var ms = new MemoryStream(ImageFromURL(grinch_url + "-1280")))
         {
             await botClient.SendDocumentAsync(callbackQuery.Message.Chat.Id, new InputFileStream(ms, "image.png"),
-                callbackQuery.Message.MessageThreadId, null, "Ось що знайшов на найближчий тиждень для групи БІКСБ-2-21-4.0д");
+                callbackQuery.Message.MessageThreadId, null, "Ось що знайшов на найближчий тиждень для групи БІКСм-1-25-14д");
         }
         await SendInlineKeyboards(botClient, callbackQuery.Message);
         return;
