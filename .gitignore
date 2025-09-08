@@ -50,3 +50,9 @@ Thumbs.db
 # Coverage
 coverage.opencover.xml
 TestResults/
+
+*.csproj.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.pubxml.user
