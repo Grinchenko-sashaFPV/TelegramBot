@@ -1,0 +1,52 @@
+# Build Folders
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated VS Code files
+.vscode/
+.vs/
+
+# Rider IDE files
+.idea/
+
+# Publish profiles (Docker, Azure, etc.)
+Properties/PublishProfiles/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.old
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# dotnet watch
+.dotnet_watch/
+
+# Coverage
+coverage.opencover.xml
+TestResults/
